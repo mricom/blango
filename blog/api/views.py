@@ -19,9 +19,15 @@ from django.utils import timezone
 from datetime import timedelta
 from django.http import Http404
 
+from blog.api.filters import PostFilterSet
+
+
+
 class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
+    filterset_class = PostFilterSet
+    ordering_fields = ["published_at", "author", "title", "slug"]
 
     def get_serializer_class(self):
         if self.action in ("list", "create"):

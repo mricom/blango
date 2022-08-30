@@ -81,6 +81,10 @@ class Dev(Configuration):
         "user_sustained": "5000/day",
         "user_burst": "100/minute",
     },
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend", 
+        "rest_framework.filters.OrderingFilter"
+    ],
   }
   # Build paths inside the project like this: BASE_DIR / 'subdir'.
   BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,6 +130,7 @@ class Dev(Configuration):
       "rest_framework",
       "rest_framework.authtoken",
       "drf_yasg",
+      "django_filters",
   ]
 
   MIDDLEWARE = [
